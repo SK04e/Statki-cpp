@@ -1,0 +1,5 @@
+﻿  ConsoleApplication3.cpp
+C:\Users\jakub\source\repos\Statki\ConsoleApplication3\ConsoleApplication3.cpp(11,10): warning C4101: "board": lokalna zmienna, do której nie istnieje odwołanie
+  player.cpp
+  Generowanie kodu...
+  ConsoleApplication3.vcxproj -> C:\Users\jakub\source\repos\Statki\x64\Debug\ConsoleApplication3.exe
