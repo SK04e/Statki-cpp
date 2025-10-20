@@ -8,21 +8,11 @@ using namespace std;
 
 int main()
 {
-    char board[10][10];
     player gracz("abc");
+    gracz.writeBoard();
     gracz.guess(gracz);
-    //string playerName = "test";
-    //player player1(playerName);
-    //cout << "Ilosc statkow gracza: " << player1.getShips();
+    gracz.writeBoard();
 
-    //while (true) {
-    //    if (player1.getShips() == 0 /* || computer.getships == 0 */) {
-    //        break;
-    //    }
-    //    cout << "Gra trwa.";
-    //    player1.guess();
-    //}
-    
 }
 
 

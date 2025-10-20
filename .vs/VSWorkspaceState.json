@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\ConsoleApplication3",
+    "\\ConsoleApplication3\\x64",
     "\\x64"
   ],
-  "SelectedNode": "\\ConsoleApplication3\\ConsoleApplication3.cpp",
+  "SelectedNode": "\\ConsoleApplication3\\player.cpp",
   "PreviewInSolutionExplorer": false
 }
