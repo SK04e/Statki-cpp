@@ -1,5 +1,4 @@
 #include "player.h"
-#include "GameExceptions.h"
 
 void player::subShips() {
     ships -= 1;
@@ -27,7 +26,7 @@ void player::writeBoard() const {
     cout << endl;
 }
 
-char player::guess(player& human) { //gracz zgaduje pole, sprawdzanie inputu, zwracanie h(hit) lub m(miss) i zmiana tablicy
+char player::guess(player &human) { //gracz zgaduje pole, sprawdzanie inputu, zwracanie h(hit) lub m(miss) i zmiana tablicy
     int x, y;
 
     while (1) {
@@ -71,25 +70,32 @@ char player::guess(player& human) { //gracz zgaduje pole, sprawdzanie inputu, zw
     }
 }
 
-void player::placeShip() {
+void player::placeShips() {
     int fleeteSize = fleet.size();
     int currentShipSize;
     int x, y;
-    bool vertical;
+    bool vertical = true; // bedzie z statku przekazane?        //do zmiany bo blad wywala jak nie ustalone
     for (int i = 0; i < fleeteSize; ++i) {
         currentShipSize = fleet[i];
-        cout << "Insert coordinates to place a ship (there can't be any other ships around" << endl;
-        cin >> x >> y;
-        --x; --y;
-        //podaj kordy x,y 
-        
+
         while (1) {
             try {
                 cout << "Insert two digits to guess coordinates (rows/columns)" << endl;
                 cin >> x >> y;
                 --x;
                 --y;
-                //kontynuacja
+                if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
+                    if (checkIfEmpty(x, y, currentShipSize, vertical) == 1) {
+                        //placeTheShip(currentShipSize, vertical);
+                        //createShipObject(currentShipSize, vertical);
+                    }
+                    else {
+                        throw GameException("There was a ship somewhere too close!");
+                    }
+                }
+                else {
+                    throw GameException("Pass correct digits (1-10)");
+                }
             }
             catch (const GameException& e) {
                 cout << "Exception: " << e.what() << endl;
@@ -105,10 +111,9 @@ void player::placeShip() {
     }
 }
 
-void player::checkIfEmpty(int x, int y, int currentShipSize, bool vertical) {
-    static int canPlace = 1;
+bool player::checkIfEmpty(int x, int y, int currentShipSize, bool vertical) { //0 - ERROR, NOT EMPTY, 1 - OK
+    int canPlace = 1;
 
-    if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
         try {
             if (board[x][y] == 's') {
                 throw GameException("There is already ship on that coords");
@@ -119,33 +124,39 @@ void player::checkIfEmpty(int x, int y, int currentShipSize, bool vertical) {
             else {
                 //srawdzenie horizontal czy vertical statku
                 if (currentShipSize == 1) {
-                    if (checkAround(x, y) == 0) {
+                    if (checkAround(x, y) == 1) {
                         cout << "You can place a ship here!" << endl;
+                        return 1;
                     }
                     else {
                         cout << "Can't place a ship here!" << endl;
+                        return 0;
                     }
                 }
                 else if (vertical) {
                     for (int i = 0; i < currentShipSize; ++i) {
-                        if (checkAround(x, (y + i)) == 1) {
+                        if (checkAround(x, (y + i)) == 0) {
                             canPlace = 0;
                             cout << "You can't place a ship here!" << endl;
+                            return 0;
                         }
-                        if (canPlace) {
-                            cout << "You can place a ship here!" << endl;
-                        }
+                    }
+                    if (canPlace) {
+                        cout << "You can place a ship here" << endl;
+                        return 1;
                     }
                 }
                 else if (!vertical) {
                     for (int i = 0; i < currentShipSize; ++i) {
-                        if (checkAround((x+i), y) == 1) {
+                        if (checkAround((x+i), y) == 0) {
                             canPlace = 0;
                             cout << "You can't place a ship here!" << endl;
+                            return 0;
                         }
-                        if (canPlace) {
-                            cout << "You can place a ship here!" << endl;
-                        }
+                    }
+                    if (canPlace) {
+                        cout << "You can place a ship here!" << endl;
+                        return 1;
                     }
                 }
             }
@@ -154,26 +165,22 @@ void player::checkIfEmpty(int x, int y, int currentShipSize, bool vertical) {
             cout << e.what() << endl;
         }
     }
-    else {
-        throw GameException("Pass correct digits (1-10)");
-    }
-}
 
-int player::checkAround(int x, int y) {
+int player::checkAround(int x, int y) { //0 - ERROR, 1 - OK
     int x1, y1;
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
             x1 = x - 1 + i;
             y1 = y - 1 + j;
-            if ((x1 < 0 || x1 < 9) || (y1 < 0 && y1 < 9)) {
+            if ((x1 < 0 || x1 > 9) || (y1 < 0 && y1 > 9)) {
                 continue;
             }
             else {
                 if (board[x - 1 + i][y - 1 + j] == 's') {
-                    return 1; //BLAD, JUZ POLOZONY STATEK
+                    return 0; //BLAD, JUZ POLOZONY STATEK
                 }
             }
         }
     }
-    return 0;
+    return 1;
 }

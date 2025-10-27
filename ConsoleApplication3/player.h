@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <locale>
 #include <vector>
+#include "GameExceptions.h"
+
 using namespace std;
 
 class player {
@@ -27,8 +29,9 @@ public:
     //char checkField(player& human, int x, int y);
     char guess(player& human);
     void writeBoard() const;
-    void placeShip();
-    void checkIfEmpty(int x, int y, int currentShipSize, bool vertical);
+    void placeShips();
+    bool checkIfEmpty(int x, int y, int currentShipSize, bool vertical);
     int checkAround(int x, int y);
-    void directionChange();
+    void placeTheShip(int size, bool vertical); 
+    //void directionChange();
 };
