@@ -8,11 +8,14 @@ using namespace std;
 
 int main()
 {
-    player gracz("abc");
-    gracz.writeBoard();
-    gracz.guess(gracz);
-    gracz.writeBoard();
+    player gracz1("dupa");
+    player gracz2("dupa2");
 
+    gracz1.initBoards();
+    gracz2.initBoards();
+    system("cls");
+    gracz1.writePlayerBoard();
+    gracz1.placeShips();
 }
 
 
@@ -29,4 +32,8 @@ char tablica:
     m - missed
     s - ship
     e - empty
-*/
+
+  
+Init pustej tablicy u obu graczy -> rozlozenie statkow 
+    
+    */

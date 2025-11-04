@@ -9,11 +9,11 @@ using namespace std;
 
 class player {
 private:
-    const int boardSize = 10;
+    static constexpr int boardSize = 10;
     string name;
     int ships;
-    char board[10][10] = { {'h','s','e','m','e','e','e','h','e','h'},
-                           {'e','s','e','s','e','e','e','e','e','e'} };
+    char playerBoard[boardSize][boardSize];
+    char enemyBoard[boardSize][boardSize];
     vector<int> fleet = { 4,3,3,2,2,2,1,1,1,1 };
 
 
@@ -22,16 +22,19 @@ public:
         this->name = name;
         this->ships = 10;
         cout << "Utworzono obiekt gracza: " << name << "\n";
+
     }
 
+    void initBoards();
     int getShips(player& human) const;
     void subShips();
     //char checkField(player& human, int x, int y);
     char guess(player& human);
-    void writeBoard() const;
+    void writePlayerBoard() const;
+    void writeEnemyBoard() const;
     void placeShips();
     bool checkIfEmpty(int x, int y, int currentShipSize, bool vertical);
     int checkAround(int x, int y);
-    void placeTheShip(int size, bool vertical); 
-    //void directionChange();
+    void placeTheShip(int x, int y, int currentShipSize, bool vertical);
+    void directionChange(bool& vertical);
 };
