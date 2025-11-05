@@ -11,11 +11,18 @@ int main()
     player gracz1("dupa");
     player gracz2("dupa2");
 
+    //p1 = &gracz1;
+
     gracz1.initBoards();
     gracz2.initBoards();
     system("cls");
     gracz1.writePlayerBoard();
     gracz1.placeShips();
+    system("cls");
+    gracz2.writeEnemyBoard(gracz1);
+    gracz2.guess(gracz1);
+    gracz2.writeEnemyBoard(gracz1);
+
 }
 
 

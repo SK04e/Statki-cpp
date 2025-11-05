@@ -5,7 +5,7 @@ void player::subShips() {
     ships -= 1;
 }
 
-int player::getShips(player &human) const {
+int player::getShips() const {
     return ships;
 }
 
@@ -15,7 +15,7 @@ void player::writePlayerBoard() const {
     for (int i = 0; i < 10; i++) {
         cout << alphabet[i] << " ";
         for (int j = 0; j < 10; j++) {
-            if (playerBoard[i][j] == 'h' || playerBoard[i][j] == 'm') {
+            if (playerBoard[i][j] == hit || playerBoard[i][j] == miss) {
                 cout << playerBoard[i][j]<< " ";
             }
             else if (playerBoard[i][j] == 's') {
@@ -30,18 +30,14 @@ void player::writePlayerBoard() const {
     cout << endl;
 }
 
-void player::writeEnemyBoard() const {
+void player::writeEnemyBoard(player &enemy) const {
     vector<char> alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
+    cout << "Plansza gracza " << enemy.name << endl;
     cout << "  1 2 3 4 5 6 7 8 9 10" << endl;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < boardSize; i++) {
         cout << alphabet[i] << " ";
-        for (int j = 0; j < 10; j++) {
-            if (enemyBoard[i][j] == 'h' || enemyBoard[i][j] == 'm') {
-                cout << enemyBoard[i][j] << " ";
-            }
-            else {
-                cout << "? ";
-            }
+        for (int j = 0; j < boardSize; j++) {
+            cout << enemyBoard[i][j] << " ";
         }
         cout << endl;
     }
@@ -49,7 +45,7 @@ void player::writeEnemyBoard() const {
 }
 
 
-char player::guess(player &human) { //gracz zgaduje pole, sprawdzanie inputu, zwracanie h(hit) lub m(miss) i zmiana tablicy
+void player::guess(player &enemy) { //gracz zgaduje pole, sprawdzanie inputu, zwracanie h(hit) lub m(miss) i zmiana tablicy
     int x, y;
 
     while (1) {
@@ -60,19 +56,22 @@ char player::guess(player &human) { //gracz zgaduje pole, sprawdzanie inputu, zw
             --y;
             if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
                 try {
-                    if (enemyBoard[x][y] == 'h' || enemyBoard[x][y] == 'm') {
+                    if (enemy.playerBoard[x][y] == hit || enemy.playerBoard[x][y] == miss) {
                         throw GameException("Those coordinates were already guessed");
                     }
                     else {
-                        if (enemyBoard[x][y] == 'e') {
-                            enemyBoard[x][y] = 'm';
+                        if (enemy.playerBoard[x][y] == 'e') {
+                            enemyBoard[x][y] = miss;
                             cout << "Fields was empty!" << endl;
-                            return 'm';
+                            break;
                         }
-                        else if (enemyBoard[x][y] == 's') {
-                            enemyBoard[x][y] = 'h';
+
+                        else if (enemy.playerBoard[x][y] == 's') {
+                            enemyBoard[x][y] = hit;
+                            system("cls");
+                            writeEnemyBoard(enemy);
                             cout << "You got a hit! Try again" << endl;
-                            return 'h';
+                            continue;
                         }
                     }
                 }
@@ -106,26 +105,35 @@ void player::placeShips() {
             try {
                 //cout << "You are placing ship " << (vertical? "vertical" : "horizontal") << endl;
                 cout << "Current ship size is: " << currentShipSize << endl;
-                cout << "Insert two digits to guess coordinates (rows/columns): ";
+                cout << "Insert two digits to place a ship (rows/columns): ";
                 cin >> x >> y;
-                cout << "Choose ship direction. Insert h for horizontal or v for vertical: ";
-                while (1) {
-                    direction = getchar();
-                    if (direction == 'h' || direction == 'v') {
-                        break;
-                    }
-                }
-                
-                if (direction == 'h') {
-                    vertical = 0;
-                }
-                else {
-                    vertical = 1;
-                }
 
                 --x;
                 --y;
-                if ((x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
+
+                if (!(x >= 0 && x <= 9) || !(y >= 0 && y <= 9)) {
+                    throw GameException("Pass correct digits (1-10)");
+                }
+
+                if (currentShipSize != 1) {
+                    cout << "Choose ship direction. Insert h for horizontal or v for vertical: ";
+                    while (1) {
+                        direction = getchar();
+                        if (direction == 'h' || direction == 'v') {
+                            break;
+                        }
+                    }
+
+                    if (direction == 'h') {
+                        vertical = 0;
+                    }
+                    else {
+                        vertical = 1;
+                    }
+                }
+
+                else vertical = 1;
+
                     if (checkIfEmpty(x, y, currentShipSize, vertical) == 1) {
                         placeTheShip(x, y, currentShipSize, vertical);
                         cout << "Wcisnij dowolny przycisk...";
@@ -139,10 +147,6 @@ void player::placeShips() {
                         throw GameException("There was a ship somewhere too close!");
                     }
                 }
-                else {
-                    throw GameException("Pass correct digits (1-10)");
-                }
-            }
             catch (const GameException& e) {
                 cout << "Exception: " << e.what() << endl;
             }
@@ -207,6 +211,7 @@ bool player::checkIfEmpty(int x, int y, int currentShipSize, bool vertical) { //
         catch (const GameException& e) {
             cout << e.what() << endl;
         }
+        return 0;
     }
 
 int player::checkAround(int x, int y) { //0 - ERROR, 1 - OK
@@ -215,7 +220,7 @@ int player::checkAround(int x, int y) { //0 - ERROR, 1 - OK
         for (int j = 0; j < 3; ++j) {
             x1 = x - 1 + i;
             y1 = y - 1 + j;
-            if ((x1 < 0 || x1 > 9) || (y1 < 0 && y1 > 9)) {
+            if ((x1 < 0 || x1 > 9) || (y1 < 0 || y1 > 9)) {
                 continue;
             }
             else {

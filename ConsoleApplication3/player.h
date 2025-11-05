@@ -14,6 +14,8 @@ private:
     int ships;
     char playerBoard[boardSize][boardSize];
     char enemyBoard[boardSize][boardSize];
+    const char hit = 'X';
+    const char miss = 'O';
     vector<int> fleet = { 4,3,3,2,2,2,1,1,1,1 };
 
 
@@ -26,12 +28,12 @@ public:
     }
 
     void initBoards();
-    int getShips(player& human) const;
+    int getShips() const;
     void subShips();
     //char checkField(player& human, int x, int y);
-    char guess(player& human);
+    void guess(player& enemy);
     void writePlayerBoard() const;
-    void writeEnemyBoard() const;
+    void writeEnemyBoard(player& enemy) const;
     void placeShips();
     bool checkIfEmpty(int x, int y, int currentShipSize, bool vertical);
     int checkAround(int x, int y);

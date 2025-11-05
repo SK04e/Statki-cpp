@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\jakub\\source\\repos\\Statki\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ConsoleApplication3\\player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\ship.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ConsoleApplication3\\ship.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\ConsoleApplication3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ConsoleApplication3\\ConsoleApplication3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ConsoleApplication3\\player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -26,17 +22,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "player.h",
               "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\player.h",
               "RelativeDocumentMoniker": "ConsoleApplication3\\player.h",
               "ToolTip": "C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\player.h",
               "RelativeToolTip": "ConsoleApplication3\\player.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAnAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-11-04T16:59:25.005Z",
               "IsPinned": true,
@@ -44,39 +40,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ship.cpp",
-              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\ship.cpp",
-              "RelativeDocumentMoniker": "ConsoleApplication3\\ship.cpp",
-              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\ship.cpp",
-              "RelativeToolTip": "ConsoleApplication3\\ship.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-04T17:18:30.159Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "player.cpp",
               "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\player.cpp",
               "RelativeDocumentMoniker": "ConsoleApplication3\\player.cpp",
               "ToolTip": "C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\player.cpp",
               "RelativeToolTip": "ConsoleApplication3\\player.cpp",
-              "ViewState": "AQIAAGEAAAAAAAAAAAAUwHwAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEAAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-19T20:24:19.931Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ConsoleApplication3.cpp",
               "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\ConsoleApplication3.cpp",
               "RelativeDocumentMoniker": "ConsoleApplication3\\ConsoleApplication3.cpp",
               "ToolTip": "C:\\Users\\jakub\\source\\repos\\Statki\\ConsoleApplication3\\ConsoleApplication3.cpp",
               "RelativeToolTip": "ConsoleApplication3\\ConsoleApplication3.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAWAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-27T19:35:47.956Z",
               "EditorCaption": ""
